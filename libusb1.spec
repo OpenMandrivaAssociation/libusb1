@@ -6,7 +6,7 @@
 Summary: A library which allows userspace access to USB devices
 Name: libusb1
 Version: 1.0.2
-Release: %mkrel 1
+Release: %mkrel 2
 Source0: http://downloads.sourceforge.net/libusb/libusb-%{version}.tar.bz2
 License: LGPLv2+
 Group: System/Libraries
@@ -23,7 +23,6 @@ this library is not compatible with the original libusb-0.1 series.
 %package -n %libname
 Summary: %summary
 Group:	System/Libraries
-Requires: %{name} = %{version}
 Requires: pkgconfig
 
 %description -n %libname
@@ -34,7 +33,7 @@ this library is not compatible with the original libusb-0.1 series.
 %package -n %devellibname
 Summary: Development files for libusb
 Group:	Development/C
-Requires: %{name} = %{version}
+Requires: %{libname} = %{version}
 Provides: libusb1-devel = %version, usb1-devel = %version
 Requires: pkgconfig
 
@@ -45,7 +44,7 @@ develop applications that use libusb1.
 %package -n %sdevellibname
 Summary: Static development files for libusb
 Group:	Development/C
-Requires: %{name}-devel = %{version}
+Requires: %devellibname = %{version}
 Provides: usb1-static-devel = %version
 
 %description -n %sdevellibname
