@@ -5,8 +5,8 @@
 
 Summary: A library which allows userspace access to USB devices
 Name: libusb1
-Version: 1.0.2
-Release: %mkrel 2
+Version: 1.0.3
+Release: %mkrel 1
 Source0: http://downloads.sourceforge.net/libusb/libusb-%{version}.tar.bz2
 License: LGPLv2+
 Group: System/Libraries
@@ -55,16 +55,15 @@ libusb1.
 %setup -q -n libusb-%{version}
 
 %build
-%configure
-make CFLAGS="$RPM_OPT_FLAGS"
+%configure2_5x
+%make
 pushd doc
 make docs
 popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+%makeinstall_std
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -83,5 +82,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %sdevellibname
 %defattr(-,root,root)
-%{_libdir}/*.a
+%{_libdir}/*a
 
