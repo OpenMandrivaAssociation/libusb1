@@ -60,7 +60,8 @@ libusb-1.0.
 %setup -q -n libusb-%{version}
 
 %build
-%configure2_5x
+# libusb-compat is in /lib and uses libusb1
+%configure2_5x --libdir=/%{_lib}
 %make
 pushd doc
 make docs
@@ -70,22 +71,32 @@ popd
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
+# static library is not needed in /lib
+mkdir -p %{buildroot}%{_libdir}
+mv %{buildroot}/%{_lib}/libusb-%api.a %{buildroot}%{_libdir}
+# add a symlink just in case libtool expects it to be there due to it
+# being referenced in the .la file
+ln -s %{_libdir}/libusb-%api.a %{buildroot}/%{_lib}/libusb-%api.a
+# move .pc file back
+mv %{buildroot}/%{_lib}/pkgconfig %{buildroot}%{_libdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files -n %libname
 %defattr(-,root,root)
 %doc AUTHORS COPYING README NEWS ChangeLog
-%{_libdir}/libusb*-%{api}.so.%{major}*
+/%{_lib}/libusb*-%{api}.so.%{major}*
 
 %files -n %devellibname
 %defattr(-,root,root)
 %doc doc/html examples/*.c
-%{_libdir}/pkgconfig/libusb-1.0.pc
+%{_libdir}/pkgconfig/libusb-%api.pc
 %{_includedir}/libusb-%api
-%{_libdir}/libusb*.so
+/%{_lib}/libusb-%api.so
 
 %files -n %sdevellibname
 %defattr(-,root,root)
-%{_libdir}/libusb*.*a
+/%{_lib}/libusb-%api.*a
+%{_libdir}/libusb-%api.a
 
