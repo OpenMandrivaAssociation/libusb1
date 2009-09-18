@@ -23,7 +23,6 @@ this library is not compatible with the original libusb-0.1 series.
 %package -n %libname
 Summary: %summary
 Group:	System/Libraries
-Requires: pkgconfig
 # Package had originally wrong major:
 Obsoletes: %{_lib}usb1 < 1.0.3-2
 
@@ -36,7 +35,6 @@ Summary: Development files for libusb
 Group:	Development/C
 Requires: %{libname} = %{version}
 Provides: libusb1-devel = %version, usb1-devel = %version, usb%{api}-devel = %version
-Requires: pkgconfig
 # Package had originally wrong api in name:
 Obsoletes: %{_lib}usb1-devel < 1.0.3-2
 
