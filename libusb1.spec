@@ -8,7 +8,7 @@
 Summary: A library which allows userspace access to USB devices
 Name: libusb1
 Version: 1.0.7
-Release: %mkrel 1
+Release: %mkrel 2
 Source0: http://downloads.sourceforge.net/libusb/libusb-%{version}.tar.bz2
 License: LGPLv2+
 Group: System/Libraries
