@@ -66,7 +66,7 @@ make docs
 popd
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
 # static library is not needed in /lib
@@ -79,7 +79,7 @@ ln -s %{_libdir}/libusb-%api.a %{buildroot}/%{_lib}/libusb-%api.a
 mv %{buildroot}/%{_lib}/pkgconfig %{buildroot}%{_libdir}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -n %libname
 %defattr(-,root,root)
