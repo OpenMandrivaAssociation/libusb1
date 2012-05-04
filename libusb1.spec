@@ -12,7 +12,6 @@ Release: %mkrel 1
 Source0: http://downloads.sourceforge.net/libusb/libusb-%{version}.tar.bz2
 License: LGPLv2+
 Group: System/Libraries
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-
 URL: http://libusb.wiki.sourceforge.net/Libusb1.0
 BuildRequires: doxygen
 
@@ -66,7 +65,6 @@ make docs
 popd
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 # static library is not needed in /lib
@@ -78,23 +76,16 @@ ln -s %{_libdir}/libusb-%api.a %{buildroot}/%{_lib}/libusb-%api.a
 # move .pc file back
 mv %{buildroot}/%{_lib}/pkgconfig %{buildroot}%{_libdir}
 
-%clean
-rm -rf %{buildroot}
-
 %files -n %libname
-%defattr(-,root,root)
 %doc AUTHORS COPYING README NEWS ChangeLog
 /%{_lib}/libusb*-%{api}.so.%{major}*
 
 %files -n %devellibname
-%defattr(-,root,root)
 %doc doc/html examples/*.c
 %{_libdir}/pkgconfig/libusb-%api.pc
 %{_includedir}/libusb-%api
 /%{_lib}/libusb-%api.so
 
 %files -n %sdevellibname
-%defattr(-,root,root)
 /%{_lib}/libusb-%api.*a
 %{_libdir}/libusb-%api.a
-
