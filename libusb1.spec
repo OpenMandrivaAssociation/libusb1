@@ -7,7 +7,7 @@
 Summary:	A library which allows userspace access to USB devices
 Name:		libusb1
 Version:	1.0.9
-Release:	3
+Release:	4
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://libusb.wiki.sourceforge.net/Libusb1.0
@@ -60,7 +60,9 @@ libusb-1.0.
 
 %build
 # libusb-compat is in /lib and uses libusb1
-%configure2_5x --libdir=/%{_lib}
+%configure2_5x \
+		--libdir=/%{_lib}
+
 %make
 pushd doc
 make docs
@@ -79,10 +81,10 @@ ln -s %{_libdir}/libusb-%{api}.a %{buildroot}/%{_lib}/libusb-%{api}.a
 mv %{buildroot}/%{_lib}/pkgconfig %{buildroot}%{_libdir}
 
 %files -n %{libname}
-%doc AUTHORS COPYING README NEWS ChangeLog
 /%{_lib}/libusb*-%{api}.so.%{major}*
 
 %files -n %{devellibname}
+%doc AUTHORS COPYING README NEWS ChangeLog
 %doc doc/html examples/*.c
 %{_libdir}/pkgconfig/libusb-%{api}.pc
 %{_includedir}/libusb-%{api}
