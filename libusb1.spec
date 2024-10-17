@@ -10,7 +10,7 @@ Version:	1.0.9
 Release:	ZED'S DEAD_BABY
 License:	LGPLv2+
 Group:		System/Libraries
-URL:		http://libusb.wiki.sourceforge.net/Libusb1.0
+URL:		https://libusb.wiki.sourceforge.net/Libusb1.0
 Source0:	http://downloads.sourceforge.net/libusb/libusb-%{version}.tar.bz2
 BuildRequires:	doxygen
 
