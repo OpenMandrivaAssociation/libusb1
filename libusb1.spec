@@ -12,6 +12,11 @@ License:	LGPLv2+
 Group:		System/Libraries
 URL:		https://libusb.wiki.sourceforge.net/Libusb1.0
 Source0:	http://downloads.sourceforge.net/libusb/libusb-%{version}.tar.bz2
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	doxygen
 
 %description
